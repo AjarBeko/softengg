@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Rendeles_Forms__GL2VHN_
 {
@@ -76,12 +77,14 @@ namespace Rendeles_Forms__GL2VHN_
                 {
                     treeViewKategoriak.SelectedNode.BeginEdit();
                 }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
 
         private void újFőkategóriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -100,8 +103,73 @@ namespace Rendeles_Forms__GL2VHN_
 
         private void frissítésToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TermekKategoria átvevezettKategoria = (TermekKategoria)e.Node.Tag;
-            _context.SaveChanges();
+
+            // TermekKategoria átvevezettKategoria = (TermekKategoria)e.node.tag;
+            //_context.SaveChanges();
+        }
+
+
+
+        private XElement CreateXmlElement(TermekKategoria kategoria, List<TermekKategoria> kategoriak)
+        {
+            XElement element = new XElement("Kategoria",
+        new XAttribute("KategoriaId", kategoria.KategoriaId),
+        new XAttribute("Nev", kategoria.Nev));
+
+            var alkategoriak = from k in kategoriak
+                               where k.SzuloKategoriaId == kategoria.KategoriaId
+                               select k;
+
+            foreach (var alkategoria in alkategoriak)
+            {
+                XElement alkategoriaElement = CreateXmlElement(alkategoria, kategoriak);
+                element.Add(alkategoriaElement);
+            }
+
+            return element;
+        }
+
+
+
+        private void treeViewKategoriak_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                treeViewKategoriak.SelectedNode = e.Node;
+                contextMenuStripKategoria.Show(treeViewKategoriak, e.Location);
+            }
+        }
+
+        private void xMLFájlMentéseToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            XDocument xdoc = new XDocument();
+
+            XDeclaration xdecl = new XDeclaration("1.0", "utf-8", "yes");
+            xdoc.Declaration = xdecl;
+
+            XElement root = new XElement("Kategoriak");
+            xdoc.Add(root);
+
+            var kategoriak = (from k in _context.TermekKategoria
+                              select k).ToList();
+
+
+            var fokategoriak = from k in kategoriak
+                               where k.SzuloKategoriaId == null
+                               select k;
+
+            foreach (var kategoria in fokategoriak)
+            {
+                XElement kategoriaElement = CreateXmlElement(kategoria, kategoriak);
+                root.Add(kategoriaElement);
+
+                //var node = CreateTreeNode(kategoria, kategoriak);
+                //treeViewKategoriak.Nodes.Add(node);
+            }
+
+
+
+            MessageBox.Show(xdoc.ToString());
         }
     }
 }

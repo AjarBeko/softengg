@@ -36,6 +36,7 @@
             újAlkategóriaToolStripMenuItem = new ToolStripMenuItem();
             törlésToolStripMenuItem = new ToolStripMenuItem();
             frissítésToolStripMenuItem = new ToolStripMenuItem();
+            xMLFájlMentéseToolStripMenuItem = new ToolStripMenuItem();
             txtNev = new TextBox();
             txtLeiras = new TextBox();
             Mentés = new Button();
@@ -51,12 +52,13 @@
             treeViewKategoriak.Name = "treeViewKategoriak";
             treeViewKategoriak.Size = new Size(317, 273);
             treeViewKategoriak.TabIndex = 5;
+            treeViewKategoriak.NodeMouseClick += treeViewKategoriak_NodeMouseClick;
             // 
             // contextMenuStripKategoria
             // 
-            contextMenuStripKategoria.Items.AddRange(new ToolStripItem[] { átnevezésToolStripMenuItem, újFőkategóriaToolStripMenuItem, újAlkategóriaToolStripMenuItem, törlésToolStripMenuItem, frissítésToolStripMenuItem });
+            contextMenuStripKategoria.Items.AddRange(new ToolStripItem[] { átnevezésToolStripMenuItem, újFőkategóriaToolStripMenuItem, újAlkategóriaToolStripMenuItem, törlésToolStripMenuItem, frissítésToolStripMenuItem, xMLFájlMentéseToolStripMenuItem });
             contextMenuStripKategoria.Name = "contextMenuStripKategoria";
-            contextMenuStripKategoria.Size = new Size(181, 136);
+            contextMenuStripKategoria.Size = new Size(181, 158);
             // 
             // átnevezésToolStripMenuItem
             // 
@@ -92,6 +94,13 @@
             frissítésToolStripMenuItem.Size = new Size(180, 22);
             frissítésToolStripMenuItem.Text = "Frissítés";
             frissítésToolStripMenuItem.Click += frissítésToolStripMenuItem_Click;
+            // 
+            // xMLFájlMentéseToolStripMenuItem
+            // 
+            xMLFájlMentéseToolStripMenuItem.Name = "xMLFájlMentéseToolStripMenuItem";
+            xMLFájlMentéseToolStripMenuItem.Size = new Size(180, 22);
+            xMLFájlMentéseToolStripMenuItem.Text = "XML fájl mentése";
+            xMLFájlMentéseToolStripMenuItem.Click += xMLFájlMentéseToolStripMenuItem_Click_1;
             // 
             // txtNev
             // 
@@ -173,5 +182,6 @@
         private ToolStripMenuItem újAlkategóriaToolStripMenuItem;
         private ToolStripMenuItem törlésToolStripMenuItem;
         private ToolStripMenuItem frissítésToolStripMenuItem;
+        private ToolStripMenuItem xMLFájlMentéseToolStripMenuItem;
     }
 }
