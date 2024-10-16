@@ -34,5 +34,11 @@ namespace Rendeles_Forms__GL2VHN_
             UgyfelLisaForm ugyfelLisaForm = new UgyfelLisaForm();
             ugyfelLisaForm.ShowDialog();
         }
+
+        private void rendeles_Click(object sender, EventArgs e)
+        {
+            RendelesForm ren = new RendelesForm();
+            ren.ShowDialog();
+        }
     }
 }

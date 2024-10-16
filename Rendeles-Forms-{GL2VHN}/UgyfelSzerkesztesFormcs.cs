@@ -43,30 +43,30 @@ namespace Rendeles_Forms__GL2VHN_
         private void textBox2_Validating(object sender, CancelEventArgs e)
         {
             Regex rgxMail = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-            if (!rgxMail.IsMatch(tbNev.Text))
+            if (!rgxMail.IsMatch(textBox2.Text))
             {
-                errorProvider1.SetError(tbNev, "Rossz Email formátum, Tartalmaznia kell egy @ jelet, előtte és utána karakterekkel.\r\nA @ jel után legalább egy pontnak kell lennie, ami nem közvetlenül a @ jel után áll.");
+                errorProvider1.SetError(textBox2, "Rossz Email formátum, Tartalmaznia kell egy @ jelet, előtte és utána karakterekkel.\r\nA @ jel után legalább egy pontnak kell lennie, ami nem közvetlenül a @ jel után áll.");
                 e.Cancel = true;
             }
             else
             {
                 //Ha nincs hiba, eltüntetjük a hibaüzenetet
-                errorProvider1.SetError(tbNev, "");
+                errorProvider1.SetError(textBox2, "");
             }
         }
 
         private void textBox3_Validating(object sender, CancelEventArgs e)
         {
             Regex rgxPhone = new Regex(@"^\+36(20|30|31|50|70)\d{7}$");
-            if (!rgxPhone.IsMatch(tbNev.Text))
+            if (!rgxPhone.IsMatch(textBox3.Text))
             {
-                errorProvider1.SetError(tbNev, "Magyar mobilszám formátumnak kell megfelelnie.\r\n+36-tal kell kezdődnie.\r\nEzt követően 20, 30, 31, 50 vagy 70 előhívó egyikével kell folytatódnia.\r\nVégül 7 számjegynek kell következnie.");
+                errorProvider1.SetError(textBox3, "Magyar mobilszám formátumnak kell megfelelnie.\r\n+36-tal kell kezdődnie.\r\nEzt követően 20, 30, 31, 50 vagy 70 előhívó egyikével kell folytatódnia.\r\nVégül 7 számjegynek kell következnie.");
                 e.Cancel = true;
             }
             else
             {
                 //Ha nincs hiba, eltüntetjük a hibaüzenetet
-                errorProvider1.SetError(tbNev, "");
+                errorProvider1.SetError(textBox3, "");
             }
         }
 

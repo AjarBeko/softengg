@@ -31,14 +31,14 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            rendeles = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(3, 3);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(86, 31);
+            button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
             button1.Text = "Új";
             button1.UseVisualStyleBackColor = true;
@@ -46,10 +46,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(3, 56);
-            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Location = new Point(3, 42);
             button2.Name = "button2";
-            button2.Size = new Size(86, 31);
+            button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
             button2.Text = "főmenü";
             button2.UseVisualStyleBackColor = true;
@@ -57,23 +56,34 @@
             // 
             // button3
             // 
-            button3.Location = new Point(3, 119);
+            button3.Location = new Point(3, 89);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(94, 29);
+            button3.Size = new Size(82, 22);
             button3.TabIndex = 2;
             button3.Text = "Ügyfél Lista";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // rendeles
+            // 
+            rendeles.Location = new Point(3, 116);
+            rendeles.Name = "rendeles";
+            rendeles.Size = new Size(75, 23);
+            rendeles.TabIndex = 3;
+            rendeles.Text = "Rendelések";
+            rendeles.UseVisualStyleBackColor = true;
+            rendeles.Click += rendeles_Click;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
+            Controls.Add(rendeles);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -84,5 +94,6 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private Button rendeles;
     }
 }
