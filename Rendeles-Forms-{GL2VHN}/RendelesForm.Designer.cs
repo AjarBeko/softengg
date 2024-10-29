@@ -32,9 +32,18 @@
             ugyfellist = new ListBox();
             ugyfelBindingSource = new BindingSource(components);
             rendeleslist = new ListBox();
+            rendelesBindingSource = new BindingSource(components);
             termekeklist = new ListBox();
             termekBindingSource = new BindingSource(components);
             dataGridView1 = new DataGridView();
+            tetelIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            termekIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            mennyisegDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            egysegArDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            afaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nettoArDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            bruttoArDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            rendelesTetelBindingSource = new BindingSource(components);
             ugyfelszur = new TextBox();
             label1 = new Label();
             label2 = new Label();
@@ -56,11 +65,11 @@
             label9 = new Label();
             label10 = new Label();
             label11 = new Label();
-            rendelesBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)ugyfelBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rendelesBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)termekBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)rendelesBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rendelesTetelBindingSource).BeginInit();
             SuspendLayout();
             // 
             // ugyfellist
@@ -68,12 +77,14 @@
             ugyfellist.DataSource = ugyfelBindingSource;
             ugyfellist.DisplayMember = "Nev";
             ugyfellist.FormattingEnabled = true;
-            ugyfellist.ItemHeight = 15;
-            ugyfellist.Location = new Point(12, 80);
+            ugyfellist.ItemHeight = 20;
+            ugyfellist.Location = new Point(14, 107);
+            ugyfellist.Margin = new Padding(3, 4, 3, 4);
             ugyfellist.Name = "ugyfellist";
-            ugyfellist.Size = new Size(136, 469);
+            ugyfellist.Size = new Size(155, 624);
             ugyfellist.TabIndex = 0;
             ugyfellist.ValueMember = "UgyfelId";
+            ugyfellist.SelectedIndexChanged += ugyfellist_SelectedIndexChanged;
             // 
             // ugyfelBindingSource
             // 
@@ -84,22 +95,29 @@
             rendeleslist.DataSource = rendelesBindingSource;
             rendeleslist.DisplayMember = "RendelesDatum";
             rendeleslist.FormattingEnabled = true;
-            rendeleslist.ItemHeight = 15;
-            rendeleslist.Location = new Point(154, 155);
+            rendeleslist.ItemHeight = 20;
+            rendeleslist.Location = new Point(176, 207);
+            rendeleslist.Margin = new Padding(3, 4, 3, 4);
             rendeleslist.Name = "rendeleslist";
-            rendeleslist.Size = new Size(149, 394);
+            rendeleslist.Size = new Size(170, 524);
             rendeleslist.TabIndex = 1;
             rendeleslist.ValueMember = "RendelesId";
+            rendeleslist.SelectedIndexChanged += rendeleslist_SelectedIndexChanged;
+            // 
+            // rendelesBindingSource
+            // 
+            rendelesBindingSource.DataSource = typeof(Models.Rendeles);
             // 
             // termekeklist
             // 
             termekeklist.DataSource = termekBindingSource;
             termekeklist.DisplayMember = "Nev";
             termekeklist.FormattingEnabled = true;
-            termekeklist.ItemHeight = 15;
-            termekeklist.Location = new Point(923, 80);
+            termekeklist.ItemHeight = 20;
+            termekeklist.Location = new Point(1482, 132);
+            termekeklist.Margin = new Padding(3, 4, 3, 4);
             termekeklist.Name = "termekeklist";
-            termekeklist.Size = new Size(216, 469);
+            termekeklist.Size = new Size(246, 624);
             termekeklist.TabIndex = 2;
             termekeklist.ValueMember = "TermekId";
             // 
@@ -109,203 +127,283 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(312, 147);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { tetelIdDataGridViewTextBoxColumn, termekIdDataGridViewTextBoxColumn, mennyisegDataGridViewTextBoxColumn, egysegArDataGridViewTextBoxColumn, afaDataGridViewTextBoxColumn, nettoArDataGridViewTextBoxColumn, bruttoArDataGridViewTextBoxColumn });
+            dataGridView1.DataSource = rendelesTetelBindingSource;
+            dataGridView1.Location = new Point(357, 196);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(509, 402);
+            dataGridView1.Size = new Size(952, 536);
             dataGridView1.TabIndex = 3;
+            // 
+            // tetelIdDataGridViewTextBoxColumn
+            // 
+            tetelIdDataGridViewTextBoxColumn.DataPropertyName = "TetelId";
+            tetelIdDataGridViewTextBoxColumn.HeaderText = "TetelId";
+            tetelIdDataGridViewTextBoxColumn.MinimumWidth = 6;
+            tetelIdDataGridViewTextBoxColumn.Name = "tetelIdDataGridViewTextBoxColumn";
+            tetelIdDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // termekIdDataGridViewTextBoxColumn
+            // 
+            termekIdDataGridViewTextBoxColumn.DataPropertyName = "TermekId";
+            termekIdDataGridViewTextBoxColumn.HeaderText = "TermekId";
+            termekIdDataGridViewTextBoxColumn.MinimumWidth = 6;
+            termekIdDataGridViewTextBoxColumn.Name = "termekIdDataGridViewTextBoxColumn";
+            termekIdDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // mennyisegDataGridViewTextBoxColumn
+            // 
+            mennyisegDataGridViewTextBoxColumn.DataPropertyName = "Mennyiseg";
+            mennyisegDataGridViewTextBoxColumn.HeaderText = "Mennyiseg";
+            mennyisegDataGridViewTextBoxColumn.MinimumWidth = 6;
+            mennyisegDataGridViewTextBoxColumn.Name = "mennyisegDataGridViewTextBoxColumn";
+            mennyisegDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // egysegArDataGridViewTextBoxColumn
+            // 
+            egysegArDataGridViewTextBoxColumn.DataPropertyName = "EgysegAr";
+            egysegArDataGridViewTextBoxColumn.HeaderText = "EgysegAr";
+            egysegArDataGridViewTextBoxColumn.MinimumWidth = 6;
+            egysegArDataGridViewTextBoxColumn.Name = "egysegArDataGridViewTextBoxColumn";
+            egysegArDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // afaDataGridViewTextBoxColumn
+            // 
+            afaDataGridViewTextBoxColumn.DataPropertyName = "Afa";
+            afaDataGridViewTextBoxColumn.HeaderText = "Afa";
+            afaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            afaDataGridViewTextBoxColumn.Name = "afaDataGridViewTextBoxColumn";
+            afaDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nettoArDataGridViewTextBoxColumn
+            // 
+            nettoArDataGridViewTextBoxColumn.DataPropertyName = "NettoAr";
+            nettoArDataGridViewTextBoxColumn.HeaderText = "NettoAr";
+            nettoArDataGridViewTextBoxColumn.MinimumWidth = 6;
+            nettoArDataGridViewTextBoxColumn.Name = "nettoArDataGridViewTextBoxColumn";
+            nettoArDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // bruttoArDataGridViewTextBoxColumn
+            // 
+            bruttoArDataGridViewTextBoxColumn.DataPropertyName = "BruttoAr";
+            bruttoArDataGridViewTextBoxColumn.HeaderText = "BruttoAr";
+            bruttoArDataGridViewTextBoxColumn.MinimumWidth = 6;
+            bruttoArDataGridViewTextBoxColumn.Name = "bruttoArDataGridViewTextBoxColumn";
+            bruttoArDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // rendelesTetelBindingSource
+            // 
+            rendelesTetelBindingSource.DataSource = typeof(Models.RendelesTetel);
             // 
             // ugyfelszur
             // 
-            ugyfelszur.Location = new Point(12, 29);
+            ugyfelszur.Location = new Point(14, 39);
+            ugyfelszur.Margin = new Padding(3, 4, 3, 4);
             ugyfelszur.Name = "ugyfelszur";
-            ugyfelszur.Size = new Size(228, 23);
+            ugyfelszur.Size = new Size(260, 27);
             ugyfelszur.TabIndex = 4;
             ugyfelszur.TextChanged += ugyfelszur_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 11);
+            label1.Location = new Point(14, 15);
             label1.Name = "label1";
-            label1.Size = new Size(94, 15);
+            label1.Size = new Size(119, 20);
             label1.TabIndex = 5;
             label1.Text = "Ügyfelek szűrése";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 62);
+            label2.Location = new Point(14, 83);
             label2.Name = "label2";
-            label2.Size = new Size(53, 15);
+            label2.Size = new Size(67, 20);
             label2.TabIndex = 6;
             label2.Text = "Ügyfelek";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(154, 137);
+            label3.Location = new Point(176, 183);
             label3.Name = "label3";
-            label3.Size = new Size(66, 15);
+            label3.Size = new Size(84, 20);
             label3.TabIndex = 7;
             label3.Text = "Rendelések";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(154, 85);
+            label4.Location = new Point(176, 113);
             label4.Name = "label4";
-            label4.Size = new Size(80, 15);
+            label4.Size = new Size(101, 20);
             label4.TabIndex = 8;
             label4.Text = "Rendeléscíme";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(540, 80);
+            label5.Location = new Point(617, 107);
             label5.Name = "label5";
-            label5.Size = new Size(74, 15);
+            label5.Size = new Size(93, 20);
             label5.TabIndex = 9;
             label5.Text = "Kedvezmény";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(646, 80);
+            label6.Location = new Point(738, 107);
             label6.Name = "label6";
-            label6.Size = new Size(44, 15);
+            label6.Size = new Size(56, 20);
             label6.TabIndex = 10;
             label6.Text = "Státusz";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(827, 231);
+            label7.Location = new Point(1379, 293);
             label7.Name = "label7";
-            label7.Size = new Size(65, 15);
+            label7.Size = new Size(80, 20);
             label7.TabIndex = 11;
             label7.Text = "Mennyiség";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(923, 62);
+            label8.Location = new Point(1482, 107);
             label8.Name = "label8";
-            label8.Size = new Size(57, 15);
+            label8.Size = new Size(72, 20);
             label8.TabIndex = 12;
             label8.Text = "Termékek";
             // 
             // kedvezmeny
             // 
-            kedvezmeny.Location = new Point(540, 103);
+            kedvezmeny.DataBindings.Add(new Binding("Text", rendelesBindingSource, "Kedvezmeny", true, DataSourceUpdateMode.OnPropertyChanged, "0", "0.00%"));
+            kedvezmeny.Location = new Point(617, 137);
+            kedvezmeny.Margin = new Padding(3, 4, 3, 4);
             kedvezmeny.Name = "kedvezmeny";
-            kedvezmeny.Size = new Size(100, 23);
+            kedvezmeny.Size = new Size(114, 27);
             kedvezmeny.TabIndex = 13;
             // 
             // rendelescime
             // 
+            rendelescime.DataBindings.Add(new Binding("SelectedValue", rendelesBindingSource, "SzallitasiCimId", true));
+            rendelescime.DataBindings.Add(new Binding("Text", rendelesBindingSource, "SzallitasiCimId", true, DataSourceUpdateMode.OnPropertyChanged));
             rendelescime.FormattingEnabled = true;
-            rendelescime.Location = new Point(154, 103);
+            rendelescime.Location = new Point(176, 137);
+            rendelescime.Margin = new Padding(3, 4, 3, 4);
             rendelescime.Name = "rendelescime";
-            rendelescime.Size = new Size(380, 23);
+            rendelescime.Size = new Size(434, 28);
             rendelescime.TabIndex = 14;
             // 
             // statusz
             // 
+            statusz.DataBindings.Add(new Binding("Text", rendelesBindingSource, "Statusz", true, DataSourceUpdateMode.OnPropertyChanged));
             statusz.FormattingEnabled = true;
-            statusz.Location = new Point(646, 103);
+            statusz.Items.AddRange(new object[] { "Feldolgozás alatt", "Szállítás", "Kiszállítva", "Törölve" });
+            statusz.Location = new Point(738, 137);
+            statusz.Margin = new Padding(3, 4, 3, 4);
             statusz.Name = "statusz";
-            statusz.Size = new Size(108, 23);
+            statusz.Size = new Size(123, 28);
             statusz.TabIndex = 15;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(827, 249);
+            textBox3.Location = new Point(1379, 317);
+            textBox3.Margin = new Padding(3, 4, 3, 4);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(85, 23);
+            textBox3.Size = new Size(97, 27);
             textBox3.TabIndex = 16;
             // 
             // tetelhozzaad
             // 
-            tetelhozzaad.Location = new Point(827, 288);
+            tetelhozzaad.Location = new Point(1379, 352);
+            tetelhozzaad.Margin = new Padding(3, 4, 3, 4);
             tetelhozzaad.Name = "tetelhozzaad";
-            tetelhozzaad.Size = new Size(85, 43);
+            tetelhozzaad.Size = new Size(97, 57);
             tetelhozzaad.TabIndex = 17;
             tetelhozzaad.Text = "Tétel hozzáadása";
             tetelhozzaad.UseVisualStyleBackColor = true;
+            tetelhozzaad.Click += tetelhozzaad_Click;
             // 
             // teteltorol
             // 
-            teteltorol.Location = new Point(827, 337);
+            teteltorol.Location = new Point(1379, 417);
+            teteltorol.Margin = new Padding(3, 4, 3, 4);
             teteltorol.Name = "teteltorol";
-            teteltorol.Size = new Size(85, 33);
+            teteltorol.Size = new Size(97, 44);
             teteltorol.TabIndex = 18;
             teteltorol.Text = "Tétel törlés";
             teteltorol.UseVisualStyleBackColor = true;
+            teteltorol.Click += teteltorol_Click;
             // 
             // mentes
             // 
-            mentes.Location = new Point(621, 555);
+            mentes.Location = new Point(710, 740);
+            mentes.Margin = new Padding(3, 4, 3, 4);
             mentes.Name = "mentes";
-            mentes.Size = new Size(90, 23);
+            mentes.Size = new Size(103, 31);
             mentes.TabIndex = 19;
             mentes.Text = "Mentés";
             mentes.UseVisualStyleBackColor = true;
             // 
             // excelexport
             // 
-            excelexport.Location = new Point(717, 555);
+            excelexport.Location = new Point(819, 740);
+            excelexport.Margin = new Padding(3, 4, 3, 4);
             excelexport.Name = "excelexport";
-            excelexport.Size = new Size(104, 23);
+            excelexport.Size = new Size(119, 31);
             excelexport.TabIndex = 20;
             excelexport.Text = "Excel export";
             excelexport.UseVisualStyleBackColor = true;
             // 
             // ujrendeles
             // 
-            ujrendeles.Location = new Point(165, 565);
+            ujrendeles.Location = new Point(189, 753);
+            ujrendeles.Margin = new Padding(3, 4, 3, 4);
             ujrendeles.Name = "ujrendeles";
-            ujrendeles.Size = new Size(138, 52);
+            ujrendeles.Size = new Size(158, 69);
             ujrendeles.TabIndex = 21;
             ujrendeles.Text = "Új rendelés";
             ujrendeles.UseVisualStyleBackColor = true;
+            ujrendeles.Click += ujrendeles_Click;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(313, 552);
+            label9.Location = new Point(358, 736);
             label9.Name = "label9";
-            label9.Size = new Size(130, 15);
+            label9.Size = new Size(166, 20);
             label9.TabIndex = 22;
             label9.Text = "A rendelés teljes értéke:";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(449, 552);
+            label10.Location = new Point(513, 736);
             label10.Name = "label10";
-            label10.Size = new Size(0, 15);
+            label10.Size = new Size(0, 20);
             label10.TabIndex = 23;
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(449, 552);
+            label11.Location = new Point(552, 736);
             label11.Name = "label11";
-            label11.Size = new Size(44, 15);
+            label11.Size = new Size(58, 20);
             label11.TabIndex = 24;
             label11.Text = "label11";
-            // 
-            // rendelesBindingSource
-            // 
-            rendelesBindingSource.DataSource = typeof(Models.Rendeles);
+            label11.Click += label11_Click;
             // 
             // RendelesForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1145, 629);
+            ClientSize = new Size(1740, 850);
             Controls.Add(label11);
             Controls.Add(label10);
             Controls.Add(label9);
@@ -331,13 +429,15 @@
             Controls.Add(termekeklist);
             Controls.Add(rendeleslist);
             Controls.Add(ugyfellist);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "RendelesForm";
             Text = "RendelesForm";
             Load += RendelesForm_Load;
             ((System.ComponentModel.ISupportInitialize)ugyfelBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rendelesBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)termekBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)rendelesBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rendelesTetelBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -372,5 +472,13 @@
         private BindingSource ugyfelBindingSource;
         private BindingSource termekBindingSource;
         private BindingSource rendelesBindingSource;
+        private DataGridViewTextBoxColumn tetelIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn termekIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn mennyisegDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn egysegArDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn afaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nettoArDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn bruttoArDataGridViewTextBoxColumn;
+        private BindingSource rendelesTetelBindingSource;
     }
 }
