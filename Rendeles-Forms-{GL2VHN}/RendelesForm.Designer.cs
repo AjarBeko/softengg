@@ -36,13 +36,6 @@
             termekeklist = new ListBox();
             termekBindingSource = new BindingSource(components);
             dataGridView1 = new DataGridView();
-            tetelIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            termekIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            mennyisegDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            egysegArDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            afaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nettoArDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            bruttoArDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             rendelesTetelBindingSource = new BindingSource(components);
             ugyfelszur = new TextBox();
             label1 = new Label();
@@ -62,9 +55,7 @@
             mentes = new Button();
             excelexport = new Button();
             ujrendeles = new Button();
-            label9 = new Label();
             label10 = new Label();
-            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)ugyfelBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rendelesBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)termekBindingSource).BeginInit();
@@ -127,10 +118,7 @@
             // 
             // dataGridView1
             // 
-            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { tetelIdDataGridViewTextBoxColumn, termekIdDataGridViewTextBoxColumn, mennyisegDataGridViewTextBoxColumn, egysegArDataGridViewTextBoxColumn, afaDataGridViewTextBoxColumn, nettoArDataGridViewTextBoxColumn, bruttoArDataGridViewTextBoxColumn });
-            dataGridView1.DataSource = rendelesTetelBindingSource;
             dataGridView1.Location = new Point(357, 196);
             dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
@@ -138,62 +126,6 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(952, 536);
             dataGridView1.TabIndex = 3;
-            // 
-            // tetelIdDataGridViewTextBoxColumn
-            // 
-            tetelIdDataGridViewTextBoxColumn.DataPropertyName = "TetelId";
-            tetelIdDataGridViewTextBoxColumn.HeaderText = "TetelId";
-            tetelIdDataGridViewTextBoxColumn.MinimumWidth = 6;
-            tetelIdDataGridViewTextBoxColumn.Name = "tetelIdDataGridViewTextBoxColumn";
-            tetelIdDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // termekIdDataGridViewTextBoxColumn
-            // 
-            termekIdDataGridViewTextBoxColumn.DataPropertyName = "TermekId";
-            termekIdDataGridViewTextBoxColumn.HeaderText = "TermekId";
-            termekIdDataGridViewTextBoxColumn.MinimumWidth = 6;
-            termekIdDataGridViewTextBoxColumn.Name = "termekIdDataGridViewTextBoxColumn";
-            termekIdDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // mennyisegDataGridViewTextBoxColumn
-            // 
-            mennyisegDataGridViewTextBoxColumn.DataPropertyName = "Mennyiseg";
-            mennyisegDataGridViewTextBoxColumn.HeaderText = "Mennyiseg";
-            mennyisegDataGridViewTextBoxColumn.MinimumWidth = 6;
-            mennyisegDataGridViewTextBoxColumn.Name = "mennyisegDataGridViewTextBoxColumn";
-            mennyisegDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // egysegArDataGridViewTextBoxColumn
-            // 
-            egysegArDataGridViewTextBoxColumn.DataPropertyName = "EgysegAr";
-            egysegArDataGridViewTextBoxColumn.HeaderText = "EgysegAr";
-            egysegArDataGridViewTextBoxColumn.MinimumWidth = 6;
-            egysegArDataGridViewTextBoxColumn.Name = "egysegArDataGridViewTextBoxColumn";
-            egysegArDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // afaDataGridViewTextBoxColumn
-            // 
-            afaDataGridViewTextBoxColumn.DataPropertyName = "Afa";
-            afaDataGridViewTextBoxColumn.HeaderText = "Afa";
-            afaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            afaDataGridViewTextBoxColumn.Name = "afaDataGridViewTextBoxColumn";
-            afaDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nettoArDataGridViewTextBoxColumn
-            // 
-            nettoArDataGridViewTextBoxColumn.DataPropertyName = "NettoAr";
-            nettoArDataGridViewTextBoxColumn.HeaderText = "NettoAr";
-            nettoArDataGridViewTextBoxColumn.MinimumWidth = 6;
-            nettoArDataGridViewTextBoxColumn.Name = "nettoArDataGridViewTextBoxColumn";
-            nettoArDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // bruttoArDataGridViewTextBoxColumn
-            // 
-            bruttoArDataGridViewTextBoxColumn.DataPropertyName = "BruttoAr";
-            bruttoArDataGridViewTextBoxColumn.HeaderText = "BruttoAr";
-            bruttoArDataGridViewTextBoxColumn.MinimumWidth = 6;
-            bruttoArDataGridViewTextBoxColumn.Name = "bruttoArDataGridViewTextBoxColumn";
-            bruttoArDataGridViewTextBoxColumn.Width = 125;
             // 
             // rendelesTetelBindingSource
             // 
@@ -372,41 +304,20 @@
             ujrendeles.UseVisualStyleBackColor = true;
             ujrendeles.Click += ujrendeles_Click;
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(358, 736);
-            label9.Name = "label9";
-            label9.Size = new Size(166, 20);
-            label9.TabIndex = 22;
-            label9.Text = "A rendelés teljes értéke:";
-            // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(513, 736);
+            label10.Location = new Point(388, 745);
             label10.Name = "label10";
             label10.Size = new Size(0, 20);
             label10.TabIndex = 23;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(552, 736);
-            label11.Name = "label11";
-            label11.Size = new Size(58, 20);
-            label11.TabIndex = 24;
-            label11.Text = "label11";
-            label11.Click += label11_Click;
             // 
             // RendelesForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1740, 850);
-            Controls.Add(label11);
             Controls.Add(label10);
-            Controls.Add(label9);
             Controls.Add(ujrendeles);
             Controls.Add(excelexport);
             Controls.Add(mentes);
@@ -466,19 +377,10 @@
         private Button mentes;
         private Button excelexport;
         private Button ujrendeles;
-        private Label label9;
         private Label label10;
-        private Label label11;
         private BindingSource ugyfelBindingSource;
         private BindingSource termekBindingSource;
         private BindingSource rendelesBindingSource;
-        private DataGridViewTextBoxColumn tetelIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn termekIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn mennyisegDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn egysegArDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn afaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nettoArDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn bruttoArDataGridViewTextBoxColumn;
         private BindingSource rendelesTetelBindingSource;
     }
 }

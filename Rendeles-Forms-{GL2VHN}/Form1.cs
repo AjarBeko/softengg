@@ -40,5 +40,11 @@ namespace Rendeles_Forms__GL2VHN_
             RendelesForm ren = new RendelesForm();
             ren.ShowDialog();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            RendelesFrom2 rend2 = new RendelesFrom2();
+            rend2.ShowDialog();
+        }
     }
 }
