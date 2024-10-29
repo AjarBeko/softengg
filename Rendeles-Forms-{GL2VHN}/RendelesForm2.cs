@@ -22,9 +22,9 @@ namespace Rendeles_Forms__GL2VHN_
             _context = new RendelesDbContext();
             LoadCimek();
             LoadUgyfelek();
-            LoadRendelesTetel();
             LoadRendelesek();
-            //LoadTermekek();
+            LoadRendelesTetel();
+            LoadTermekek();
            
         }
 
@@ -59,9 +59,10 @@ namespace Rendeles_Forms__GL2VHN_
                         CimId = i.CimId,
                         CimEgyben = $"{i.Iranyitoszam}-{i.Varos}, {i.Orszag}: {i.Utca}, {i.Hazszam}"
                     };
-            cimEgybenDTOBindingSource.DataSource = q.ToList();
-            cimEgybenDTOBindingSource.ResetCurrentItem();
-
+            //cimEgybenDTOBindingSource.DataSource = q.ToList();
+            //cimEgybenDTOBindingSource.ResetCurrentItem();
+            var cimekList = q.ToList();
+            cimEgybenDTOBindingSource.DataSource = cimekList;
         }
 
         private void cim_combobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -101,7 +102,7 @@ namespace Rendeles_Forms__GL2VHN_
             
             if (rendelesBindingSource.Current == null) return;
 
-            var t = from rt in _context.RendelesTetel
+            var q = from rt in _context.RendelesTetel
                     where rt.RendelesId == ((Rendeles)rendelesBindingSource.Current).RendelesId
                     select new RendelesTetelDTO
                     {
@@ -114,7 +115,7 @@ namespace Rendeles_Forms__GL2VHN_
                         BruttoAr = rt.BruttoAr
                     };
 
-            dataGridView1.DataSource = t.ToList();
+            dataGridView1.DataSource = q.ToList();
             UpdateVegosszeg();
         }
         private void rendelesek_listbox_SelectedIndexChanged(object sender, EventArgs e)
@@ -254,7 +255,7 @@ namespace Rendeles_Forms__GL2VHN_
             kivalasztottRendeles.Vegosszeg = vegosszeg *(1- kivalasztottRendeles.Kedvezmeny);
 
             Mentés();
-            rendelesBindingSource.ResetBindings(false);
+            //rendelesBindingSource.ResetBindings(false); !!!!!ezzel nem fut!!!!!
         }
 
 

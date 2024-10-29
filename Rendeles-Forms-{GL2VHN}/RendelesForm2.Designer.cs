@@ -112,6 +112,7 @@
             // termekBindingSource
             // 
             termekBindingSource.DataSource = typeof(Models.Termek);
+
             // 
             // ugyfelszures_textbox
             // 
