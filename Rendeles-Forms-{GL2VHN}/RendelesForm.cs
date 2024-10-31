@@ -15,7 +15,6 @@ namespace Rendeles_Forms__GL2VHN_
     public partial class RendelesForm : Form
     {
         private readonly RendelesDbContext _context;
-
         private BindingSource cimEgybenDTOBindingSource = new BindingSource();
         public RendelesForm()
         {
@@ -27,6 +26,7 @@ namespace Rendeles_Forms__GL2VHN_
             LoadRendelesek();
         }
 
+        //Ugyfelek betöltése, szűrése
         private void RendelesForm_Load(object sender, EventArgs e)
         {
             LoadUgyfelek();
@@ -39,7 +39,6 @@ namespace Rendeles_Forms__GL2VHN_
                     select x;
 
             ugyfelBindingSource.DataSource = q.ToList();
-
             ugyfelBindingSource.ResetCurrentItem();
         }
 
@@ -47,6 +46,8 @@ namespace Rendeles_Forms__GL2VHN_
         {
             LoadUgyfelek();
         }
+
+        //termékek betöltése
         private void LoadTermekek()
         {
             var t = from x in _context.Termek
@@ -56,6 +57,7 @@ namespace Rendeles_Forms__GL2VHN_
             termekBindingSource.ResetCurrentItem();
         }
 
+        //címek betöltése comboboxba
         private void LoadCimek()
         {
             var q = from x in _context.Cim
@@ -73,6 +75,7 @@ namespace Rendeles_Forms__GL2VHN_
 
         }
 
+        //rendelések betöltése
         private void LoadRendelesek()
         {
             if (ugyfelBindingSource.Current == null) return;
@@ -91,30 +94,12 @@ namespace Rendeles_Forms__GL2VHN_
 
         }
 
-
-
-
-        public class CimEgybenDTO
-        {
-            public int CimId { get; set; }
-            public string? CimEgyben { get; set; }
-        }
-
         private void ugyfellist_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadRendelesek();
         }
 
-        public class RendelesTetelDTO
-        {
-            public int TetelId { get; set; }
-            public string? TermekNev { get; set; }
-            public int Mennyiseg { get; set; }
-            public decimal EgysegAr { get; set; }
-            public decimal Afa { get; set; }
-            public decimal NettoAr { get; set; }
-            public decimal BruttoAr { get; set; }
-        }
+        //rendelések betöltése datagridview-ba
 
         private void LoadRendelesTetel()
         {
@@ -136,6 +121,7 @@ namespace Rendeles_Forms__GL2VHN_
             dataGridView1.DataSource = q.ToList();
             UpdateVegosszeg();
         }
+        //végösszegszámítás
         private void UpdateVegosszeg()
         {
             if (rendelesBindingSource.Current == null) return;
@@ -157,6 +143,7 @@ namespace Rendeles_Forms__GL2VHN_
             LoadRendelesTetel();
         }
 
+        //új rendelés hozzáadása
         private void ujrendeles_Click(object sender, EventArgs e)
         {
             if (ugyfelBindingSource.Current == null)
@@ -204,6 +191,9 @@ namespace Rendeles_Forms__GL2VHN_
                 MessageBox.Show(ex.Message);
             }
         }
+
+        //tétel hozzáadása
+
         private const decimal AFA = .27m;
         private void tetelhozzaad_Click(object sender, EventArgs e)
         {
@@ -236,10 +226,10 @@ namespace Rendeles_Forms__GL2VHN_
 
             _context.RendelesTetel.Add(ujTetel);
             Mentés();
-
             LoadRendelesTetel();
         }
 
+        //tétel törlése
         private void teteltorol_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -263,6 +253,23 @@ namespace Rendeles_Forms__GL2VHN_
             }
         }
 
+        //rendelések betöltése datagridview-ba
+        public class RendelesTetelDTO
+        {
+            public int TetelId { get; set; }
+            public string? TermekNev { get; set; }
+            public int Mennyiseg { get; set; }
+            public decimal EgysegAr { get; set; }
+            public decimal Afa { get; set; }
+            public decimal NettoAr { get; set; }
+            public decimal BruttoAr { get; set; }
+        }
 
+        //cimek összefűzése
+        public class CimEgybenDTO
+        {
+            public int CimId { get; set; }
+            public string? CimEgyben { get; set; }
+        }
     }
 }

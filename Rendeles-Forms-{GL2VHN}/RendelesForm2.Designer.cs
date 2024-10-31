@@ -56,6 +56,8 @@
             label9 = new Label();
             rendelesTetelBindingSource = new BindingSource(components);
             dataGridView1 = new DataGridView();
+            UserControl1 = new Button();
+            UserControl2 = new Button();
             ((System.ComponentModel.ISupportInitialize)ugyfelBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rendelesBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)termekBindingSource).BeginInit();
@@ -112,7 +114,6 @@
             // termekBindingSource
             // 
             termekBindingSource.DataSource = typeof(Models.Termek);
-
             // 
             // ugyfelszures_textbox
             // 
@@ -130,7 +131,7 @@
             cim_combobox.Name = "cim_combobox";
             cim_combobox.Size = new Size(484, 28);
             cim_combobox.TabIndex = 5;
-            cim_combobox.SelectedIndexChanged += cim_combobox_SelectedIndexChanged;
+            
             // 
             // statusz_combobox
             // 
@@ -159,7 +160,7 @@
             // 
             // ujrendeles_button
             // 
-            ujrendeles_button.Location = new Point(190, 704);
+            ujrendeles_button.Location = new Point(190, 697);
             ujrendeles_button.Name = "ujrendeles_button";
             ujrendeles_button.Size = new Size(209, 42);
             ujrendeles_button.TabIndex = 9;
@@ -262,7 +263,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(405, 704);
+            label7.Location = new Point(443, 708);
             label7.Name = "label7";
             label7.Size = new Size(0, 20);
             label7.TabIndex = 20;
@@ -299,11 +300,27 @@
             dataGridView1.Size = new Size(1066, 540);
             dataGridView1.TabIndex = 23;
             // 
+            // UserControl1
+            // 
+            UserControl1.Location = new Point(0, 0);
+            UserControl1.Name = "UserControl1";
+            UserControl1.Size = new Size(75, 23);
+            UserControl1.TabIndex = 28;
+            // 
+            // UserControl2
+            // 
+            UserControl2.Location = new Point(0, 0);
+            UserControl2.Name = "UserControl2";
+            UserControl2.Size = new Size(75, 23);
+            UserControl2.TabIndex = 27;
+            // 
             // RendelesFrom2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1927, 794);
+            ClientSize = new Size(1924, 1055);
+            Controls.Add(UserControl2);
+            Controls.Add(UserControl1);
             Controls.Add(dataGridView1);
             Controls.Add(label9);
             Controls.Add(label8);
@@ -368,5 +385,7 @@
         private BindingSource rendelesBindingSource;
         private BindingSource rendelesTetelBindingSource;
         private DataGridView dataGridView1;
+        private Button UserControl1;
+        private Button UserControl2;
     }
 }

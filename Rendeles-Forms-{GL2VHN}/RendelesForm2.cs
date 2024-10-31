@@ -21,11 +21,11 @@ namespace Rendeles_Forms__GL2VHN_
             InitializeComponent();
             _context = new RendelesDbContext();
             LoadCimek();
-            LoadUgyfelek();
+            //LoadUgyfelek();
             LoadRendelesek();
             LoadRendelesTetel();
             LoadTermekek();
-           
+
         }
 
         //Ugyfelek betöltése, szűrése
@@ -59,16 +59,16 @@ namespace Rendeles_Forms__GL2VHN_
                         CimId = i.CimId,
                         CimEgyben = $"{i.Iranyitoszam}-{i.Varos}, {i.Orszag}: {i.Utca}, {i.Hazszam}"
                     };
-            //cimEgybenDTOBindingSource.DataSource = q.ToList();
-            //cimEgybenDTOBindingSource.ResetCurrentItem();
-            var cimekList = q.ToList();
-            cimEgybenDTOBindingSource.DataSource = cimekList;
+            cimEgybenDTOBindingSource.DataSource = q.ToList();
+            cimEgybenDTOBindingSource.ResetCurrentItem();
+            //var cimekList = q.ToList();
+            //cimEgybenDTOBindingSource.DataSource = cimekList;
         }
-
+        /*
         private void cim_combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadCimek();
-        }
+            //LoadCimek();
+        }*/
 
         //rendelések betöltése
         private void LoadRendelesek()
@@ -79,7 +79,6 @@ namespace Rendeles_Forms__GL2VHN_
                            where i.UgyfelId == ((Ugyfel)ugyfelBindingSource.Current).UgyfelId
                            select i;
             rendelesBindingSource.DataSource = rendeles.ToList();
-
             rendelesek_listbox.DataSource = rendelesBindingSource;
 
             if (rendelesek_listbox.Items.Count > 0)
@@ -94,12 +93,11 @@ namespace Rendeles_Forms__GL2VHN_
             LoadRendelesek();
         }
 
-
         //rendelések betöltése datagridview-ba
 
         private void LoadRendelesTetel()
         {
-            
+
             if (rendelesBindingSource.Current == null) return;
 
             var q = from rt in _context.RendelesTetel
@@ -124,7 +122,7 @@ namespace Rendeles_Forms__GL2VHN_
         }
 
         //termékek betöltése
-        
+
         private void LoadTermekek()
         {
             var t = from x in _context.Termek
@@ -219,7 +217,7 @@ namespace Rendeles_Forms__GL2VHN_
         //tétel törlése
         private void teteltorles_button_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.SelectedRows.Count == 0)
+            if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Nincs kiválasztott tétel!");
                 return;
@@ -252,7 +250,7 @@ namespace Rendeles_Forms__GL2VHN_
                 .Where(i => i.RendelesId == kivalasztottRendeles.RendelesId)
                 .Sum(i => i.Mennyiseg * i.BruttoAr);
 
-            kivalasztottRendeles.Vegosszeg = vegosszeg *(1- kivalasztottRendeles.Kedvezmeny);
+            kivalasztottRendeles.Vegosszeg = vegosszeg * (1 - kivalasztottRendeles.Kedvezmeny);
 
             Mentés();
             //rendelesBindingSource.ResetBindings(false); !!!!!ezzel nem fut!!!!!
@@ -279,5 +277,7 @@ namespace Rendeles_Forms__GL2VHN_
             public decimal NettoAr { get; set; }
             public decimal BruttoAr { get; set; }
         }
+
+
     }
 }
